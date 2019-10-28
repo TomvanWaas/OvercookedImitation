@@ -1,0 +1,265 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{4BB7590D-3CD1-4AAC-AC8F-DB0534E11B4F}</ProjectGuid>
+    <Keyword>Win32Proj</Keyword>
+    <RootNamespace>OverlordProject</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0.17134.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <CharacterSet>MultiByte</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v141</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\OverlordEngine\OverlordEngine.props" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+    <Import Project="..\OverlordEngine\OverlordEngine.props" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+    <OutDir>..\Build\$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+    <OutDir>..\Build\$(Configuration)\</OutDir>
+    <IntDir>$(Configuration)\</IntDir>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <WarningLevel>Level4</WarningLevel>
+      <Optimization>Disabled</Optimization>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>$(SolutionDir)OverlordEngine;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <TreatWarningAsError>true</TreatWarningAsError>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalOptions>/ignore:4099 %(AdditionalOptions)</AdditionalOptions>
+      <Profile>
+      </Profile>
+      <IgnoreSpecificDefaultLibraries>libcpmtd.lib;libcmtd.lib</IgnoreSpecificDefaultLibraries>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy "$(OV_LIBS)PhysX\bin\Debug\*" "$(OutDir)" /y /D
+xcopy "$(OV_LIBS)Fmod\bin\*" "$(OutDir)" /y /D</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level4</WarningLevel>
+      <PrecompiledHeader>Use</PrecompiledHeader>
+      <Optimization>MaxSpeed</Optimization>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <AdditionalIncludeDirectories>../OverlordEngine/;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <TreatWarningAsError>true</TreatWarningAsError>
+    </ClCompile>
+    <Link>
+      <SubSystem>Windows</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <IgnoreSpecificDefaultLibraries>libcpmt.lib;libcmt.lib</IgnoreSpecificDefaultLibraries>
+    </Link>
+    <PostBuildEvent>
+      <Command>xcopy "$(OV_LIBS)PhysX\bin\Release\*" "$(OutDir)" /y /D
+xcopy "$(OV_LIBS)Fmod\bin\*" "$(OutDir)" /y /D</Command>
+    </PostBuildEvent>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="Components\Camera\CameraEventComponent.cpp" />
+    <ClCompile Include="Components\Other\EventManagerComponent.cpp" />
+    <ClCompile Include="Components\Camera\CameraLightComponent.cpp" />
+    <ClCompile Include="Helpers\SceneSetter.cpp" />
+    <ClCompile Include="Materials\PostProcessing\FirePostMaterial.cpp" />
+    <ClCompile Include="Materials\DiffuseMaterial.cpp" />
+    <ClCompile Include="Scenes\ControlsScene.cpp" />
+    <ClCompile Include="Components\Interface\ButtonManagerComponent.cpp" />
+    <ClCompile Include="Components\Interface\ButtonComponent.cpp" />
+    <ClCompile Include="Components\Item\ExtinguisherComponent.cpp" />
+    <ClCompile Include="Components\Visuals\FadeParticleComponent.cpp" />
+    <ClCompile Include="Components\Box\BoxComponentDeletor.cpp" />
+    <ClCompile Include="Components\Box\BoxComponentHolderContainer.cpp" />
+    <ClCompile Include="Components\Box\BoxComponentFoodContainer.cpp" />
+    <ClCompile Include="Components\Box\BoxComponentActiveUpdator.cpp" />
+    <ClCompile Include="Components\Box\BoxComponentPassiveUpdator.cpp" />
+    <ClCompile Include="Components\Box\BoxComponentBase.cpp" />
+    <ClCompile Include="Structs\ModelInfo.cpp" />
+    <ClCompile Include="Components\Other\ColorFlickerComponent.cpp" />
+    <ClCompile Include="Singletons\AssetFiles.cpp" />
+    <ClCompile Include="Components\Character\CharacterComponent.cpp" />
+    <ClCompile Include="Helpers\Raycast.cpp" />
+    <ClCompile Include="Prototype\PrototypeObject.cpp" />
+    <ClCompile Include="Singletons\Templates.cpp" />
+    <ClCompile Include="Components\Other\ShakeComponent.cpp" />
+    <ClCompile Include="Components\Other\LerpComponent.cpp" />
+    <ClCompile Include="Helpers\Helpers.cpp" />
+    <ClCompile Include="Components\Holder\HolderProgressComponent.cpp" />
+    <ClCompile Include="Components\Holder\HolderComponent.cpp" />
+    <ClCompile Include="Components\Holder\HolderPointer.cpp" />
+    <ClCompile Include="Components\Food\FoodPointer.cpp" />
+    <ClCompile Include="Components\Food\FoodComponent.cpp" />
+    <ClCompile Include="Components\Holder\HolderIconsComponent.cpp" />
+    <ClCompile Include="Components\Food\FoodInterfaceComponent.cpp" />
+    <ClCompile Include="Components\Holder\HolderInterfaceComponent.cpp" />
+    <ClCompile Include="Components\Holder\HolderParticleComponent.cpp" />
+    <ClCompile Include="Components\Other\FireComponent.cpp" />
+    <ClCompile Include="Components\Item\ItemPointer.cpp" />
+    <ClCompile Include="Components\Holder\HolderBoxNotifier.cpp" />
+    <ClCompile Include="Components\Interface\InterfaceComponent.cpp" />
+    <ClCompile Include="Materials\Shadow\DiffuseMaterial_Shadow.cpp" />
+    <ClCompile Include="Materials\Shadow\SkinnedDiffuseMaterial_Shadow.cpp" />
+    <ClCompile Include="Materials\SkinnedDiffuseMaterial.cpp" />
+    <ClCompile Include="Materials\ColorMaterial.cpp" />
+    <ClCompile Include="Structs\Recipe.cpp" />
+    <ClCompile Include="Components\Recipe\RecipeComponent.cpp" />
+    <ClCompile Include="Components\Recipe\RecipeManagerComponent.cpp" />
+    <ClCompile Include="Components\Other\ScoreManagerComponent.cpp" />
+    <ClCompile Include="Components\Other\ScoreTextComponent.cpp" />
+    <ClCompile Include="Materials\TextureMaterial.cpp" />
+    <ClCompile Include="Singletons\StaticInfo.cpp" />
+    <ClCompile Include="Components\Visuals\SliderParticleComponent.cpp" />
+    <ClCompile Include="Components\Other\MoverComponent.cpp" />
+    <ClCompile Include="Scenes\PauseScene.cpp" />
+    <ClCompile Include="Scenes\MenuScene.cpp" />
+    <ClCompile Include="Scenes\ScoreScene.cpp" />
+    <ClCompile Include="Scenes\LoadgameScene.cpp" />
+    <ClCompile Include="Components\Visuals\PostProcessingManagerComponent.cpp" />
+    <ClCompile Include="stdafx.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Main.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="MainGame.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">Use</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">stdafx.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">Use</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="Scenes\ShipScene.cpp" />
+    <ClCompile Include="Components\Visuals\ParticleComponent.cpp" />
+    <ClCompile Include="Components\Camera\TopDownCameraComponent.cpp" />
+    <ClCompile Include="Components\Other\TimerComponent.cpp" />
+    <ClCompile Include="Materials\WaterMaterial.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\OverlordEngine\OverlordEngine.vcxproj">
+      <Project>{634cfe8d-455c-45bf-94f0-bd0aab13e0e6}</Project>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="Components\Camera\CameraEventComponent.h" />
+    <ClInclude Include="Components\Other\EventManagerComponent.h" />
+    <ClInclude Include="Components\Camera\CameraLightComponent.h" />
+    <ClInclude Include="Helpers\SceneSetter.h" />
+    <ClInclude Include="Helpers\SoundID.h" />
+    <ClInclude Include="Materials\PostProcessing\FirePostMaterial.h" />
+    <ClInclude Include="Materials\DiffuseMaterial.h" />
+    <ClInclude Include="Scenes\ControlsScene.h" />
+    <ClInclude Include="Components\Interface\ButtonManagerComponent.h" />
+    <ClInclude Include="Components\Interface\ButtonComponent.h" />
+    <ClInclude Include="Components\Item\ExtinguisherComponent.h" />
+    <ClInclude Include="Components\Visuals\FadeParticleComponent.h" />
+    <ClInclude Include="Components\Box\BoxComponentDeletor.h" />
+    <ClInclude Include="Components\Box\BoxComponentHolderContainer.h" />
+    <ClInclude Include="Components\Box\BoxComponentFoodContainer.h" />
+    <ClInclude Include="Components\Box\BoxComponentActiveUpdator.h" />
+    <ClInclude Include="Components\Box\BoxComponentPassiveUpdator.h" />
+    <ClInclude Include="Components\Box\BoxComponentBase.h" />
+    <ClInclude Include="Components\Food\FoodInfo.h" />
+    <ClInclude Include="Helpers\Events.h" />
+    <ClInclude Include="Structs\ModelInfo.h" />
+    <ClInclude Include="Components\Holder\HolderInfo.h" />
+    <ClInclude Include="Components\Other\ColorFlickerComponent.h" />
+    <ClInclude Include="Helpers\Timer.h" />
+    <ClInclude Include="Singletons\AssetFiles.h" />
+    <ClInclude Include="Components\Character\CharacterComponent.h" />
+    <ClInclude Include="Helpers\Enums.h" />
+    <ClInclude Include="Helpers\Raycast.h" />
+    <ClInclude Include="Prototype\PrototypeObject.h" />
+    <ClInclude Include="Components\Other\ShakeComponent.h" />
+    <ClInclude Include="Components\Other\LerpComponent.h" />
+    <ClInclude Include="Helpers\Helpers.h" />
+    <ClInclude Include="Components\Holder\HolderProgressComponent.h" />
+    <ClInclude Include="Components\Holder\HolderComponent.h" />
+    <ClInclude Include="Components\Holder\HolderPointer.h" />
+    <ClInclude Include="Components\Food\FoodPointer.h" />
+    <ClInclude Include="Components\Food\FoodComponent.h" />
+    <ClInclude Include="Components\Holder\HolderIconsComponent.h" />
+    <ClInclude Include="Components\Food\FoodInterfaceComponent.h" />
+    <ClInclude Include="Components\Holder\HolderInterfaceComponent.h" />
+    <ClInclude Include="Components\Holder\HolderParticleComponent.h" />
+    <ClInclude Include="Components\Other\FireComponent.h" />
+    <ClInclude Include="Components\Item\ItemInterfaceComponent.h" />
+    <ClInclude Include="Components\Item\ItemPointer.h" />
+    <ClInclude Include="Components\Holder\HolderBoxNotifier.h" />
+    <ClInclude Include="Components\Interface\InterfaceComponent.h" />
+    <ClInclude Include="Materials\Shadow\DiffuseMaterial_Shadow.h" />
+    <ClInclude Include="Materials\Shadow\SkinnedDiffuseMaterial_Shadow.h" />
+    <ClInclude Include="Materials\SkinnedDiffuseMaterial.h" />
+    <ClInclude Include="Materials\ColorMaterial.h" />
+    <ClInclude Include="Prototype\PrototypeComponent.h" />
+    <ClInclude Include="Singletons\Templates.h" />
+    <ClInclude Include="Templates\SingletonObject.h" />
+    <ClInclude Include="Structs\Recipe.h" />
+    <ClInclude Include="Components\Recipe\RecipeComponent.h" />
+    <ClInclude Include="Components\Recipe\RecipeManagerComponent.h" />
+    <ClInclude Include="Components\Other\ScoreManagerComponent.h" />
+    <ClInclude Include="Components\Other\ScoreTextComponent.h" />
+    <ClInclude Include="Components\Other\MoverComponent.h" />
+    <ClInclude Include="Scenes\PauseScene.h" />
+    <ClInclude Include="Scenes\MenuScene.h" />
+    <ClInclude Include="Scenes\ScoreScene.h" />
+    <ClInclude Include="Components\Visuals\PostProcessingManagerComponent.h" />
+    <ClInclude Include="Materials\TextureMaterial.h" />
+    <ClInclude Include="Singletons\StaticInfo.h" />
+    <ClInclude Include="Components\Visuals\SliderParticleComponent.h" />
+    <ClInclude Include="Scenes\LoadgameScene.h" />
+    <ClInclude Include="stdafx.h" />
+    <ClInclude Include="MainGame.h" />
+    <ClInclude Include="Scenes\ShipScene.h" />
+    <ClInclude Include="Components\Visuals\ParticleComponent.h" />
+    <ClInclude Include="Components\Camera\TopDownCameraComponent.h" />
+    <ClInclude Include="Components\Other\TimerComponent.h" />
+    <ClInclude Include="Materials\WaterMaterial.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
